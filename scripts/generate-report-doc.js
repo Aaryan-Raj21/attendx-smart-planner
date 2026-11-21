@@ -18,7 +18,7 @@ import {
   NumberFormat,
 } from "docx";
 
-console.log("Generating AttendX Academic Major Project Report (.docx)...");
+console.log("Generating AttendX Major Project Report matching exact JECRC University Guidelines...");
 
 const doc = new Document({
   styles: {
@@ -26,12 +26,12 @@ const doc = new Document({
       document: {
         run: {
           font: "Times New Roman",
-          size: 24, // 12pt (half-points)
+          size: 24, // 12pt
           color: "000000",
         },
         paragraph: {
           spacing: {
-            line: 360, // 1.5 line spacing (240 is 1.0)
+            line: 360, // 1.5 line spacing
             before: 120,
             after: 120,
           },
@@ -74,9 +74,9 @@ const doc = new Document({
     },
   },
   sections: [
-    // ----------------------------------------------------
-    // SECTION 1: FRONT MATTER (ROMAN NUMERALS)
-    // ----------------------------------------------------
+    // -------------------------------------------------------------------------
+    // FRONT MATTER SECTION (ROMAN NUMERALS i, ii, iii...)
+    // -------------------------------------------------------------------------
     {
       properties: {
         page: {
@@ -88,7 +88,7 @@ const doc = new Document({
             top: 1440, // 1 inch
             bottom: 1440,
             left: 2160, // 1.5 inch
-            right: 1440, // 1 inch
+            right: 1440,
           },
         },
       },
@@ -106,10 +106,10 @@ const doc = new Document({
         // COVER PAGE
         new Paragraph({
           alignment: AlignmentType.CENTER,
-          spacing: { before: 200, after: 200 },
+          spacing: { before: 200, after: 150 },
           children: [
             new TextRun({
-              text: "A MAJOR PROJECT REPORT",
+              text: "MAJOR PROJECT REPORT",
               bold: true,
               size: 36, // 18pt
             }),
@@ -117,17 +117,17 @@ const doc = new Document({
         }),
         new Paragraph({
           alignment: AlignmentType.CENTER,
-          spacing: { before: 100, after: 300 },
+          spacing: { before: 50, after: 200 },
           children: [
-            new TextRun({ text: "ON", bold: true, size: 24 }),
+            new TextRun({ text: "on", size: 24, italics: true }),
           ],
         }),
         new Paragraph({
           alignment: AlignmentType.CENTER,
-          spacing: { before: 100, after: 400 },
+          spacing: { before: 100, after: 300 },
           children: [
             new TextRun({
-              text: '"ATTENDX: SMART ATTENDANCE PLANNER"',
+              text: '“AttendX: Smart Attendance Planner”',
               bold: true,
               size: 36,
               color: "1e1b4b",
@@ -136,7 +136,7 @@ const doc = new Document({
         }),
         new Paragraph({
           alignment: AlignmentType.CENTER,
-          spacing: { before: 200, after: 400 },
+          spacing: { before: 100, after: 300 },
           children: [
             new TextRun({
               text: "Submitted in partial fulfillment of the requirements for the award of the degree of\nBACHELOR OF TECHNOLOGY\nin\nCOMPUTER SCIENCE AND ENGINEERING",
@@ -147,85 +147,82 @@ const doc = new Document({
         }),
         new Paragraph({
           alignment: AlignmentType.CENTER,
-          spacing: { before: 300, after: 300 },
+          spacing: { before: 250, after: 250 },
           children: [
             new TextRun({
-              text: "[ UNIVERSITY LOGO PLACEHOLDER ]",
+              text: "[ JECRC UNIVERSITY LOGO ]",
               bold: true,
               italics: true,
               size: 24,
+              color: "DC2626",
             }),
           ],
         }),
         new Paragraph({
           alignment: AlignmentType.CENTER,
-          spacing: { before: 300, after: 200 },
+          spacing: { before: 200, after: 150 },
           children: [
-            new TextRun({ text: "SUBMITTED BY:", bold: true, size: 24 }),
+            new TextRun({ text: "Submitted By:\n", bold: true, size: 24 }),
             new TextRun({
-              text: "\n[Name 1 (Reg. No.)]\n[Name 2 (Reg. No.)]\n[Name 3 (Reg. No.)]\n[Name 4 (Reg. No.)]",
+              text: "Aryan Raj (Reg. No. 23BCON123 [Your Reg. No.])\n[Name of Student 2 (Registration No.)]\n[Name of Student 3 (Registration No.)]",
               size: 24,
             }),
           ],
         }),
         new Paragraph({
           alignment: AlignmentType.CENTER,
-          spacing: { before: 200, after: 300 },
+          spacing: { before: 150, after: 250 },
           children: [
-            new TextRun({ text: "UNDER THE SUPERVISION OF:", bold: true, size: 24 }),
+            new TextRun({ text: "Under the Supervision of:\n", bold: true, size: 24 }),
             new TextRun({
-              text: "\n[Name, Designation]\nProject Guide, Department of CSE",
+              text: "Dr./Mr./Ms. [Guide Name]\n(Assistant Professor, Department of CSE)",
               size: 24,
             }),
           ],
         }),
         new Paragraph({
           alignment: AlignmentType.CENTER,
-          spacing: { before: 400, after: 100 },
+          spacing: { before: 300, after: 100 },
           children: [
             new TextRun({
-              text: "DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING\nJECRC UNIVERSITY, JAIPUR\nSESSION: 2025-26",
+              text: "DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING\nJECRC UNIVERSITY, JAIPUR\nSESSION: 2025–26",
               bold: true,
               size: 26,
             }),
           ],
         }),
 
-        // DECLARATION
+        // DECLARATION (EXACT UNIVERSITY TEMPLATE)
         new Paragraph({
           pageBreakBefore: true,
           alignment: AlignmentType.CENTER,
           heading: HeadingLevel.HEADING_1,
-          children: [new TextRun({ text: "CANDIDATES' DECLARATION", bold: true })],
+          children: [new TextRun({ text: "DECLARATION", bold: true })],
         }),
         new Paragraph({
           children: [
             new TextRun({
-              text: "We hereby declare that the work presented in this Major Project Report entitled \"AttendX: Smart Attendance Planner\" submitted towards the partial fulfillment of the requirements for the award of the degree of Bachelor of Technology in Computer Science and Engineering at JECRC University, Jaipur, is an authentic record of our own original work carried out under the supervision of [Name, Designation].",
-            }),
-          ],
-        }),
-        new Paragraph({
-          children: [
-            new TextRun({
-              text: "We have not submitted the matter embodied in this report for the award of any other degree or diploma to any other University or Institute. All sources of assistance, mathematical formulas, and literature cited have been acknowledged.",
+              text: "I, Aryan Raj, certify that my major project work embodied in this Report entitled “AttendX: Smart Attendance Planner” is my own Bonafide work carried out by me under the supervision of [Name of Guide] (Guide) at the Department of Computer Science & Engineering, JECRC University, Jaipur. The work is original and has not been submitted earlier as a whole or in part for the award of any degree/diploma at this or any other Institution / university in India or abroad.",
             }),
           ],
         }),
         new Paragraph({
           spacing: { before: 400, after: 200 },
           children: [
-            new TextRun({ text: "Date: __________________\nPlace: Jaipur\n\n" }),
-            new TextRun({ text: "Signatures of Students:\n" }),
-            new TextRun({ text: "1. ________________________ [Name 1 (Reg. No.)]\n" }),
-            new TextRun({ text: "2. ________________________ [Name 2 (Reg. No.)]\n" }),
-            new TextRun({ text: "3. ________________________ [Name 3 (Reg. No.)]\n" }),
-            new TextRun({ text: "4. ________________________ [Name 4 (Reg. No.)]\n\n\n" }),
-            new TextRun({ text: "Countersigned by Guide: ________________________\n[Name, Designation], Department of CSE, JECRC University" }),
+            new TextRun({
+              text: "Date: __________________\nPlace: Jaipur\n\n\n" +
+                    "                                                                                               Signature of Student\n" +
+                    "                                                                                               Aryan Raj\n" +
+                    "                                                                                               (Reg. No. 23BCON123)\n\n\n\n" +
+                    "Counter Signature\n" +
+                    "_____________________\n" +
+                    "[Guide Name], Guide\n" +
+                    "Department of CSE, JECRC University",
+            }),
           ],
         }),
 
-        // CERTIFICATE
+        // CERTIFICATE (EXACT UNIVERSITY TEMPLATE)
         new Paragraph({
           pageBreakBefore: true,
           alignment: AlignmentType.CENTER,
@@ -235,22 +232,22 @@ const doc = new Document({
         new Paragraph({
           children: [
             new TextRun({
-              text: "This is to certify that the project entitled \"AttendX: Smart Attendance Planner\" submitted by [Name 1 (Reg. No.)], [Name 2 (Reg. No.)], [Name 3 (Reg. No.)], and [Name 4 (Reg. No.)] in partial fulfillment of the requirements for the award of the degree of Bachelor of Technology in Computer Science and Engineering (Semester [e.g., III], Session: 2025-26) to JECRC University, Jaipur, is a record of bonafide project work carried out under my supervision and guidance.",
+              text: "This is to certify that the Major Project titled “AttendX: Smart Attendance Planner” has been successfully completed by: Aryan Raj (Reg. No. 23BCON123), [Student Name 2, Reg. No.], [Student Name 3, Reg. No.] under my supervision during VII Semester of B.Tech. (CSE), JECRC University, Jaipur.",
             }),
           ],
         }),
         new Paragraph({
+          spacing: { before: 600, after: 200 },
           children: [
             new TextRun({
-              text: "To the best of my knowledge, the matter embodied in this report has not been submitted to any other University / Institute for the award of any degree.",
-            }),
-          ],
-        }),
-        new Paragraph({
-          spacing: { before: 500, after: 200 },
-          children: [
-            new TextRun({
-              text: "_________________________\t\t_________________________\n[Name, Designation]\t\t\tHead of Department (CSE)\nProject Guide, Dept. of CSE\t\tJECRC University, Jaipur\n\n\n_________________________\nDean, Faculty of Engineering\nJECRC University, Jaipur",
+              text: "______________________________                     ______________________________\n" +
+                    "(Project Guide Signature)                                    (HOD Signature)\n" +
+                    "Name: [Guide Name]                                            Head, Department of CSE\n" +
+                    "Designation: Assistant Professor\n\n\n\n" +
+                    "______________________________\n" +
+                    "(Dean Signature)\n" +
+                    "Dean, School of Engineering\n" +
+                    "JECRC University, Jaipur",
             }),
           ],
         }),
@@ -265,21 +262,21 @@ const doc = new Document({
         new Paragraph({
           children: [
             new TextRun({
-              text: "We express our sincere gratitude and profound indebtedness to our project supervisor, [Name, Designation], Department of Computer Science and Engineering, JECRC University, Jaipur, for providing constant guidance, constructive suggestions, and patient mentoring throughout the design and development of \"AttendX: Smart Attendance Planner\".",
+              text: "I take this opportunity to express my profound gratitude and deep regards to my supervisor, [Guide Name], Department of Computer Science & Engineering, JECRC University, Jaipur, for providing exemplary guidance, constant encouragement, and insightful feedback throughout the duration of this Major Project.",
             }),
           ],
         }),
         new Paragraph({
           children: [
             new TextRun({
-              text: "We extend our heartiest thanks to the Head of Department, Computer Science and Engineering, and Dean, Faculty of Engineering, JECRC University, for providing excellent departmental computational facilities and an encouraging academic environment.",
+              text: "I am equally grateful to the Head of Department, Computer Science & Engineering, and the Dean, School of Engineering, JECRC University, for facilitating access to departmental computational laboratories and fostering an enriching technical environment.",
             }),
           ],
         }),
         new Paragraph({
           children: [
             new TextRun({
-              text: "Lastly, we thank our parents, peers, and fellow classmates for their unwavering support, valuable testing feedback, and continuous motivation during the preparation of this major project report.",
+              text: "Finally, I extend my heartfelt thanks to my parents, classmates, and peers for their unceasing motivation, constructive testing observations, and continuous support throughout this research and development endeavor.",
             }),
           ],
         }),
@@ -288,12 +285,13 @@ const doc = new Document({
           alignment: AlignmentType.RIGHT,
           children: [
             new TextRun({
-              text: "[Name 1]\n[Name 2]\n[Name 3]\n[Name 4]\nB.Tech CSE, JECRC University",
+              text: "Aryan Raj\n(Reg. No. 23BCON123)\nDepartment of CSE, JECRC University, Jaipur",
+              bold: true,
             }),
           ],
         }),
 
-        // ABSTRACT
+        // ABSTRACT (EXACT 1-PARAGRAPH ITALIC SPECIFICATION)
         new Paragraph({
           pageBreakBefore: true,
           alignment: AlignmentType.CENTER,
@@ -307,7 +305,7 @@ const doc = new Document({
           ],
         }),
         new Paragraph({
-          spacing: { before: 240, after: 180 },
+          spacing: { before: 240, after: 160 },
           children: [
             new TextRun({
               italics: true,
@@ -317,17 +315,12 @@ const doc = new Document({
         }),
         new Paragraph({
           children: [
-            new TextRun({
-              text: "Keywords: ",
-              bold: true,
-            }),
-            new TextRun({
-              text: "Attendance Tracking, Bunk Calculator, Attendance Prediction, Next.js App Router, Google Gemini AI, LocalStorage Persistence.",
-            }),
+            new TextRun({ text: "Keywords: ", bold: true }),
+            new TextRun({ text: "Attendance Tracking, Bunk Calculator, Attendance Prediction, Next.js App Router, Google Gemini AI, LocalStorage Persistence." }),
           ],
         }),
 
-        // TABLE OF CONTENTS (STRUCTURE SUMMARY)
+        // TABLE OF CONTENTS
         new Paragraph({
           pageBreakBefore: true,
           alignment: AlignmentType.CENTER,
@@ -337,16 +330,124 @@ const doc = new Document({
         new Paragraph({
           children: [
             new TextRun({
-              text: "Declaration .......................................................................................................... ii\nCertificate .......................................................................................................... iii\nAcknowledgement ............................................................................................ iv\nAbstract ............................................................................................................... v\nList of Tables ..................................................................................................... vii\nList of Figures .................................................................................................... viii\nList of Abbreviations ....................................................................................... ix\n\nChapter 1: Introduction .................................................................................... 1\n  1.1 Background of the Study ........................................................................ 1\n  1.2 Problem Statement ................................................................................ 2\n  1.3 Objectives of the Project ........................................................................ 3\n  1.4 Scope of the Project ............................................................................... 4\n\nChapter 2: Literature Review and Comparative Analysis ............................ 6\n  2.1 Related Work and Existing Systems ....................................................... 6\n  2.2 Comparative Study Matrix ...................................................................... 8\n  2.3 Feasibility Study (Technical, Economic, Operational) ............................ 10\n\nChapter 3: System Design and Modeling ...................................................... 12\n  3.1 System Architecture .............................................................................. 12\n  3.2 UML Diagrams (Use Case, Activity, Sequence) .................................... 14\n  3.3 Data Flow Diagrams (Level 0 and Level 1) ............................................ 17\n  3.4 Entity-Relationship (ER) Modeling ....................................................... 19\n  3.5 Database & Data Schema Design ........................................................... 21\n\nChapter 4: Implementation and AI Integration ........................................... 23\n  4.1 Tools and Technologies Used ............................................................... 23\n  4.2 Hardware and Software Requirements ................................................. 26\n  4.3 Module-Wise Functional Description .................................................... 27\n  4.4 Core Algorithms and Calculation Logic ............................................... 30\n\nChapter 5: Testing and Performance Analysis ............................................ 33\n  5.1 Test Plan and Methodology ................................................................... 33\n  5.2 Comprehensive Test Cases (Table 5.1) .................................................. 34\n  5.3 System Screenshots and Visual Outputs .............................................. 37\n  5.4 Performance and Security Audit ........................................................... 38\n\nChapter 6: Conclusion and Future Scope ..................................................... 40\n  6.1 Summary of Project Achievements ....................................................... 40\n  6.2 Limitations of the System .................................................................... 41\n  6.3 Future Enhancements ............................................................................ 42\n\nReferences (IEEE Style) .................................................................................. 43\nAppendices (A: User Manual, B: Screenshots, C: Code Excerpts) ............ 46",
+              text: "DECLARATION .................................................................................................................... i\n" +
+                    "CERTIFICATE .................................................................................................................... ii\n" +
+                    "ACKNOWLEDGEMENT .................................................................................................... iii\n" +
+                    "ABSTRACT ....................................................................................................................... iv\n" +
+                    "TABLE OF CONTENTS ..................................................................................................... vi\n" +
+                    "LIST OF TABLES .............................................................................................................. ix\n" +
+                    "LIST OF FIGURES ............................................................................................................. xi\n" +
+                    "LIST OF ABBREVIATIONS ............................................................................................... xv\n\n" +
+                    "CHAPTER 1: INTRODUCTION ........................................................................................... 1\n" +
+                    "  1.1 Background of the Study ............................................................................................ 3\n" +
+                    "  1.2 Problem Statement .................................................................................................... 7\n" +
+                    "  1.3 Objectives of the Project ............................................................................................ 8\n" +
+                    "  1.4 Scope of the Project ................................................................................................... 8\n\n" +
+                    "CHAPTER 2: LITERATURE REVIEW / ANALYSIS .......................................................... 11\n" +
+                    "  2.1 Related Work ............................................................................................................. 11\n" +
+                    "  2.2 Comparative Study ................................................................................................... 14\n" +
+                    "  2.3 Feasibility Study ........................................................................................................ 15\n" +
+                    "      2.3.1 Technical Feasibility ........................................................................................... 15\n" +
+                    "      2.3.2 Economic Feasibility .......................................................................................... 16\n" +
+                    "      2.3.3 Operational Feasibility ........................................................................................ 16\n\n" +
+                    "CHAPTER 3: SYSTEM DESIGN ........................................................................................ 17\n" +
+                    "  3.1 System Architecture .................................................................................................. 17\n" +
+                    "  3.2 UML Diagrams (Use Case, Activity, Sequence) ....................................................... 19\n" +
+                    "  3.3 Data Flow Diagram (DFD Level 0 & Level 1) ............................................................ 22\n" +
+                    "  3.4 ER Diagram ............................................................................................................... 24\n" +
+                    "  3.5 Database Design & Schema ....................................................................................... 25\n\n" +
+                    "CHAPTER 4: IMPLEMENTATION ..................................................................................... 27\n" +
+                    "  4.1 Tools & Technologies Used ...................................................................................... 27\n" +
+                    "  4.2 System Requirements (Hardware & Software) .......................................................... 30\n" +
+                    "  4.3 Modules Description ................................................................................................. 31\n" +
+                    "  4.4 Algorithms / Logic Used ........................................................................................... 34\n\n" +
+                    "CHAPTER 5: TESTING & RESULTS ................................................................................. 37\n" +
+                    "  5.1 Test Plan ................................................................................................................... 37\n" +
+                    "  5.2 Test Cases Table ...................................................................................................... 38\n" +
+                    "  5.3 Output Screenshots ................................................................................................... 41\n" +
+                    "  5.4 Performance Analysis ............................................................................................... 42\n\n" +
+                    "CHAPTER 6: CONCLUSION & FUTURE WORK ............................................................... 44\n" +
+                    "  Summary of Project ......................................................................................................... 44\n" +
+                    "  Achievements ................................................................................................................. 44\n" +
+                    "  Limitations ..................................................................................................................... 45\n" +
+                    "  Future Scope ................................................................................................................... 45\n\n" +
+                    "BIBLIOGRAPHY / REFERENCES (IEEE Style) ................................................................ 46\n" +
+                    "APPENDICES (Appendix A: User Manual, Appendix B: Screenshots, Appendix C: Code) .. 49",
+            }),
+          ],
+        }),
+
+        // LIST OF TABLES
+        new Paragraph({
+          pageBreakBefore: true,
+          alignment: AlignmentType.CENTER,
+          heading: HeadingLevel.HEADING_1,
+          children: [new TextRun({ text: "LIST OF TABLES", bold: true })],
+        }),
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: "Table 2.1: Comparative Feature Evaluation Matrix of AttendX vs Existing Portals ............. 14\n" +
+                    "Table 4.1: Hardware and Software System Requirements Specification ............................... 30\n" +
+                    "Table 5.1: Functional and Mathematical Verification Test Suite (22 Unit Cases) .................. 38\n" +
+                    "Table 5.2: Production Performance and Bundle Trace Benchmarks ..................................... 42",
+            }),
+          ],
+        }),
+
+        // LIST OF FIGURES
+        new Paragraph({
+          pageBreakBefore: true,
+          alignment: AlignmentType.CENTER,
+          heading: HeadingLevel.HEADING_1,
+          children: [new TextRun({ text: "LIST OF FIGURES", bold: true })],
+        }),
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: "Figure 3.1: Client-First Decoupled System Architecture of AttendX ..................................... 18\n" +
+                    "Figure 3.2: UML Use Case Diagram for Student Interactions ................................................ 20\n" +
+                    "Figure 3.3: UML Sequence Diagram for AI Context Injection Flow ........................................ 21\n" +
+                    "Figure 3.4: Data Flow Diagram (DFD Level 0 Context Model) ............................................... 23\n" +
+                    "Figure 3.5: Entity-Relationship (ER) Schema for LocalStorage Data Entities ......................... 24\n" +
+                    "Figure 5.1: Production Executive Attendance Dashboard with Recharts Analytics ................ 41\n" +
+                    "Figure 5.2: Dedicated Full-Screen AI Assistant Interface with Google Gemini API ............... 41",
+            }),
+          ],
+        }),
+
+        // LIST OF ABBREVIATIONS
+        new Paragraph({
+          pageBreakBefore: true,
+          alignment: AlignmentType.CENTER,
+          heading: HeadingLevel.HEADING_1,
+          children: [new TextRun({ text: "LIST OF ABBREVIATIONS", bold: true })],
+        }),
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: "AICTE     - All India Council for Technical Education\n" +
+                    "API       - Application Programming Interface\n" +
+                    "CSE       - Computer Science and Engineering\n" +
+                    "DFD       - Data Flow Diagram\n" +
+                    "ERP       - Enterprise Resource Planning\n" +
+                    "HTTPS     - Hypertext Transfer Protocol Secure\n" +
+                    "JSON      - JavaScript Object Notation\n" +
+                    "LLM       - Large Language Model\n" +
+                    "PWA       - Progressive Web App\n" +
+                    "REST      - Representational State Transfer\n" +
+                    "SVG       - Scalable Vector Graphics\n" +
+                    "UI / UX   - User Interface / User Experience\n" +
+                    "UML       - Unified Modeling Language",
             }),
           ],
         }),
       ],
     },
 
-    // ----------------------------------------------------
-    // SECTION 2: CHAPTERS 1 TO 6 & APPENDICES (ARABIC 1, 2, 3...)
-    // ----------------------------------------------------
+    // -------------------------------------------------------------------------
+    // MAIN REPORT BODY SECTION (ARABIC NUMERALS 1, 2, 3...)
+    // -------------------------------------------------------------------------
     {
       properties: {
         page: {
@@ -369,7 +470,7 @@ const doc = new Document({
               alignment: AlignmentType.RIGHT,
               children: [
                 new TextRun({
-                  text: "AttendX: Smart Attendance Planner | JECRC University",
+                  text: "AttendX: Smart Attendance Planner | JECRC University, Jaipur",
                   size: 18, // 9pt
                   color: "666666",
                 }),
@@ -403,14 +504,14 @@ const doc = new Document({
         new Paragraph({
           children: [
             new TextRun({
-              text: "In contemporary collegiate education, particularly within Bachelor of Technology (B.Tech) engineering programs governed by statutory bodies such as the All India Council for Technical Education (AICTE) and individual state university ordinances, mandatory classroom attendance forms an integral prerequisite for semester examination eligibility. Most higher technical institutions enforce a strict threshold requiring students to maintain at least 75% attendance in theory lectures and laboratory sessions across each registered subject course.",
+              text: "In undergraduate engineering programs governed by statutory regulatory frameworks such as the All India Council for Technical Education (AICTE) and university examination ordinances, mandatory lecture attendance serves as a primary eligibility requirement for semester end-term examinations. Technical institutions enforce a strict policy mandating students to maintain at least 75% attendance across lectures and laboratory practicals.",
             }),
           ],
         }),
         new Paragraph({
           children: [
             new TextRun({
-              text: "Regular attendance is correlated with academic excellence, experiential laboratory competency, and peer engagement. However, undergraduates frequently balance heavy coursework with competitive technical coding contests, industrial internships, illness, and extracurricular collegiate festivals. Because college attendance is cumulative, missing even a modest cluster of consecutive classes early in the semester causes a precipitous percentage drop that compounds as the final examination approaches.",
+              text: "While classroom engagement directly correlates with engineering competency and laboratory proficiency, undergraduates routinely manage demanding extracurricular and career milestones, including national hackathons, technical internships, inter-college cultural symposiums, campus recruitment drives, and illness. Because attendance tracking is cumulative, unmonitored absences early in the academic session lead to irreversible shortages as final examinations approach.",
             }),
           ],
         }),
@@ -422,14 +523,11 @@ const doc = new Document({
         new Paragraph({
           children: [
             new TextRun({
-              text: "While institutional Enterprise Resource Planning (ERP) software and manual classroom roll registers record presence and absence, they suffer from significant usability and analytical limitations:",
-            }),
-          ],
-        }),
-        new Paragraph({
-          children: [
-            new TextRun({
-              text: "1. Passive Retrospection: Traditional ERP portals merely present retrospective percentages (e.g., \"68.2%\") without indicating forward-looking remediation steps.\n2. Lack of Decision Guidance: Students are unable to quickly determine how many upcoming lectures they may safely skip (\"bunk capacity\") without breaching the 75% threshold.\n3. Delayed Awareness: Students typically realize attendance shortages at the semester's end when recovery is mathematically impossible, leading to debarment and academic distress.\n4. Cumbersome Accessibility: University portals frequently experience server downtime during exam weeks, require repetitive multi-factor logins, and do not provide predictive simulation capabilities.",
+              text: "Existing institutional Enterprise Resource Planning (ERP) systems exhibit severe structural and usability deficiencies:\n\n" +
+                    "1. Passive Retrospection: Portals merely present historical percentages (e.g. 68.2%) without providing actionable forward-looking recovery plans.\n" +
+                    "2. Lack of Decision Guidance: Students have no mathematical tool to compute allowable skips (\"bunk capacity\") while staying above the 75% threshold.\n" +
+                    "3. Delayed Awareness: Students discover shortages during the final two weeks of the semester when recovery is mathematically unattainable.\n" +
+                    "4. Severe Inaccessibility: University portals experience server downtime during exam weeks, require repetitive multi-factor logins, and lack predictive modeling.",
             }),
           ],
         }),
@@ -441,14 +539,12 @@ const doc = new Document({
         new Paragraph({
           children: [
             new TextRun({
-              text: "The primary objectives of \"AttendX: Smart Attendance Planner\" are:",
-            }),
-          ],
-        }),
-        new Paragraph({
-          children: [
-            new TextRun({
-              text: "1. To formulate and implement a precise mathematical calculation engine that computes real-time attendance percentage, bunk allowance, consecutive recovery classes, and future scenario projections.\n2. To architect a zero-latency, privacy-centric user interface utilizing browser localStorage, eliminating mandatory cloud logins and third-party database vulnerabilities.\n3. To construct an intelligent academic conversational assistant (\"AttendX Assistant\") powered by Google Gemini AI that synthesizes the student's real attendance statistics and generates actionable recovery advice.\n4. To provide visual risk classification (Safe, Warning, Shortage) through interactive Recharts analytics and immediate notification banners.\n5. To facilitate complete data portability via JSON backup export and import mechanisms.",
+              text: "The core objectives of AttendX: Smart Attendance Planner are:\n\n" +
+                    "1. Formulate and implement a verified mathematical engine computing percentage, allowable bunks, and consecutive recovery targets.\n" +
+                    "2. Build a client-first, privacy-focused architecture utilizing browser LocalStorage, eliminating remote database dependencies.\n" +
+                    "3. Integrate an AI Assistant (\"AttendX Assistant\") powered by Google Gemini Flash API using secure context injection.\n" +
+                    "4. Implement real-time risk classification (Safe, Warning, Shortage) with interactive Recharts analytics.\n" +
+                    "5. Ensure complete data portability via JSON backup export and import mechanisms.",
             }),
           ],
         }),
@@ -460,7 +556,7 @@ const doc = new Document({
         new Paragraph({
           children: [
             new TextRun({
-              text: "The scope of AttendX encompasses all standard undergraduate academic programs where minimum attendance thresholds are enforced. It provides subject-wise customization, allowing students to set independent target percentages (e.g., 85% for scholarship courses or 75% standard). The system is fully responsive across desktop, tablet, and mobile browsers, ensuring immediate classroom utility.",
+              text: "The scope of AttendX encompasses technical university programs where attendance thresholds are strictly enforced. The platform supports global target configuration (default 75%) with subject-level target overrides. It runs seamlessly on modern desktop, tablet, and mobile browsers.",
             }),
           ],
         }),
@@ -470,43 +566,35 @@ const doc = new Document({
           pageBreakBefore: true,
           alignment: AlignmentType.CENTER,
           heading: HeadingLevel.HEADING_1,
-          children: [new TextRun({ text: "CHAPTER 2\nLITERATURE REVIEW AND COMPARATIVE ANALYSIS", bold: true })],
+          children: [new TextRun({ text: "CHAPTER 2\nLITERATURE REVIEW / ANALYSIS", bold: true })],
         }),
         new Paragraph({
           heading: HeadingLevel.HEADING_2,
-          children: [new TextRun({ text: "2.1 Related Work and Existing Systems" })],
+          children: [new TextRun({ text: "2.1 Related Work" })],
         }),
         new Paragraph({
           children: [
             new TextRun({
-              text: "Prior attendance tracking paradigms fall into three primary categories: Institutional ERP Systems, Generic Spreadsheet Templates, and Basic Mobile Trackers. Research in educational human-computer interaction demonstrates that while ERP platforms fulfill administrative auditing needs, they fail as personal decision-support systems due to lack of predictive algorithms.",
+              text: "Prior research in academic attendance systems reveals three predominant approaches: Institutional ERP Software, Manual Spreadsheets (Microsoft Excel / Google Sheets), and Basic Mobile Utility Apps. While ERP platforms satisfy administrative payroll and auditing requirements, human-computer interaction studies indicate they fail as personal decision-support systems due to the complete absence of forward-looking predictive models.",
             }),
           ],
         }),
 
         new Paragraph({
           heading: HeadingLevel.HEADING_2,
-          children: [new TextRun({ text: "2.2 Comparative Study Matrix" })],
-        }),
-        new Paragraph({
-          children: [
-            new TextRun({
-              text: "Table 2.1 summarizes the architectural and functional distinctions between AttendX and existing solutions:",
-            }),
-          ],
+          children: [new TextRun({ text: "2.2 Comparative Study" })],
         }),
         new Paragraph({
           spacing: { before: 100, after: 100 },
           children: [
             new TextRun({
-              text: "Table 2.1: Comparative Feature Evaluation Matrix",
+              text: "Table 2.1: Comparative Feature Evaluation Matrix of AttendX vs Existing Portals",
               bold: true,
               font: "Garamond",
               size: 20,
             }),
           ],
         }),
-        // TABLE COMPARISON
         new Table({
           width: { size: 100, type: WidthType.PERCENTAGE },
           rows: [
@@ -514,48 +602,48 @@ const doc = new Document({
               children: [
                 new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: "Feature / Capability", bold: true })] })] }),
                 new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: "College ERP Portal", bold: true })] })] }),
-                new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: "Excel / Sheets", bold: true })] })] }),
+                new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: "Manual Spreadsheets", bold: true })] })] }),
                 new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: "AttendX Planner", bold: true })] })] }),
               ],
             }),
             new TableRow({
               children: [
-                new TableCell({ children: [new Paragraph({ text: "Bunk Capacity Calculator" })] }),
-                new TableCell({ children: [new Paragraph({ text: "No (Static only)" })] }),
+                new TableCell({ children: [new Paragraph({ text: "Bunk Capacity Calculation" })] }),
+                new TableCell({ children: [new Paragraph({ text: "No (Static numbers only)" })] }),
                 new TableCell({ children: [new Paragraph({ text: "Requires manual formula" })] }),
-                new TableCell({ children: [new Paragraph({ text: "Yes (Automatic exact math)" })] }),
+                new TableCell({ children: [new Paragraph({ text: "Automated (Exact floor formula)" })] }),
               ],
             }),
             new TableRow({
               children: [
                 new TableCell({ children: [new Paragraph({ text: "Consecutive Recovery Math" })] }),
-                new TableCell({ children: [new Paragraph({ text: "No" })] }),
+                new TableCell({ children: [new Paragraph({ text: "No recovery guidance" })] }),
                 new TableCell({ children: [new Paragraph({ text: "Complex formula setup" })] }),
-                new TableCell({ children: [new Paragraph({ text: "Yes (With proof display)" })] }),
+                new TableCell({ children: [new Paragraph({ text: "Automated (Exact ceiling formula)" })] }),
               ],
             }),
             new TableRow({
               children: [
                 new TableCell({ children: [new Paragraph({ text: "AI Context-Aware Chatbot" })] }),
-                new TableCell({ children: [new Paragraph({ text: "No" })] }),
-                new TableCell({ children: [new Paragraph({ text: "No" })] }),
-                new TableCell({ children: [new Paragraph({ text: "Yes (Google Gemini API)" })] }),
+                new TableCell({ children: [new Paragraph({ text: "Not available" })] }),
+                new TableCell({ children: [new Paragraph({ text: "Not available" })] }),
+                new TableCell({ children: [new Paragraph({ text: "Integrated (Google Gemini Flash)" })] }),
               ],
             }),
             new TableRow({
               children: [
                 new TableCell({ children: [new Paragraph({ text: "Client Storage & Privacy" })] }),
-                new TableCell({ children: [new Paragraph({ text: "Central Server Logins" })] }),
-                new TableCell({ children: [new Paragraph({ text: "Cloud / Local File" })] }),
-                new TableCell({ children: [new Paragraph({ text: "100% LocalStorage Private" })] }),
+                new TableCell({ children: [new Paragraph({ text: "Centralized server logins" })] }),
+                new TableCell({ children: [new Paragraph({ text: "Local file / cloud sync" })] }),
+                new TableCell({ children: [new Paragraph({ text: "100% Client LocalStorage" })] }),
               ],
             }),
             new TableRow({
               children: [
-                new TableCell({ children: [new Paragraph({ text: "Scenario Prediction" })] }),
+                new TableCell({ children: [new Paragraph({ text: "Multi-Scenario Prediction" })] }),
                 new TableCell({ children: [new Paragraph({ text: "No" })] }),
                 new TableCell({ children: [new Paragraph({ text: "Manual table creation" })] }),
-                new TableCell({ children: [new Paragraph({ text: "Yes (3-Scenario Engine)" })] }),
+                new TableCell({ children: [new Paragraph({ text: "Integrated (3-Scenario Slider)" })] }),
               ],
             }),
           ],
@@ -568,7 +656,9 @@ const doc = new Document({
         new Paragraph({
           children: [
             new TextRun({
-              text: "2.3.1 Technical Feasibility: The project utilizes Next.js 14 App Router, React 18, and modern CSS via Tailwind. Browser localStorage is universally supported across 99.8% of web browsers without requiring backend servers.\n\n2.3.2 Economic Feasibility: Zero software licensing costs. Next.js is open-source, Google Gemini Flash API provides a generous free tier for academic projects, and Vercel offers free static/serverless hosting.\n\n2.3.3 Operational Feasibility: Designed with an intuitive zero-training interface featuring 1-click attendance buttons (Present, Absent, Cancelled, Undo), ensuring immediate student adoption.",
+              text: "2.3.1 Technical Feasibility: The implementation leverages Next.js 14 App Router, React 18, and modern CSS via Tailwind. Browser LocalStorage is supported across 99.8% of modern web browsers.\n\n" +
+                    "2.3.2 Economic Feasibility: Zero software licensing costs. The application uses open-source web tooling, the free tier of Google Gemini API, and free serverless deployment on Vercel.\n\n" +
+                    "2.3.3 Operational Feasibility: Designed for zero-training operation with 1-click attendance buttons (Present, Absent, Cancelled, Undo), ensuring immediate student adoption.",
             }),
           ],
         }),
@@ -578,7 +668,7 @@ const doc = new Document({
           pageBreakBefore: true,
           alignment: AlignmentType.CENTER,
           heading: HeadingLevel.HEADING_1,
-          children: [new TextRun({ text: "CHAPTER 3\nSYSTEM DESIGN AND MODELING", bold: true })],
+          children: [new TextRun({ text: "CHAPTER 3\nSYSTEM DESIGN", bold: true })],
         }),
         new Paragraph({
           heading: HeadingLevel.HEADING_2,
@@ -594,12 +684,12 @@ const doc = new Document({
 
         new Paragraph({
           heading: HeadingLevel.HEADING_2,
-          children: [new TextRun({ text: "3.2 UML Diagrams (Mermaid Code Representation)" })],
+          children: [new TextRun({ text: "3.2 UML Diagrams (Use Case, Activity, Sequence)" })],
         }),
         new Paragraph({
           children: [
             new TextRun({
-              text: "Figure 3.1: Use Case Diagram for AttendX\n```mermaid\nflowchart TD\n    Student((Student))\n    UC1[Manage Subjects: Add/Edit/Delete]\n    UC2[Mark Daily Attendance: Present/Absent/Cancelled]\n    UC3[Perform Undo Last Action]\n    UC4[Calculate Bunk Capacity]\n    UC5[Calculate Recovery Classes Needed]\n    UC6[Simulate Future Attendance Scenarios]\n    UC7[Consult AI Assistant with Real Context]\n    UC8[Export / Import JSON Data]\n    \n    Student --> UC1\n    Student --> UC2\n    Student --> UC3\n    Student --> UC4\n    Student --> UC5\n    Student --> UC6\n    Student --> UC7\n    Student --> UC8\n```",
+              text: "Figure 3.2: UML Use Case Diagram\n```mermaid\nflowchart TD\n    Student((Student))\n    UC1[Manage Subjects: Add/Edit/Delete]\n    UC2[Mark Daily Attendance: Present/Absent/Cancelled]\n    UC3[Perform Undo Last Action]\n    UC4[Calculate Bunk Capacity]\n    UC5[Calculate Recovery Classes Needed]\n    UC6[Simulate Future Attendance Scenarios]\n    UC7[Consult AI Assistant with Real Context]\n    UC8[Export / Import JSON Data]\n    \n    Student --> UC1\n    Student --> UC2\n    Student --> UC3\n    Student --> UC4\n    Student --> UC5\n    Student --> UC6\n    Student --> UC7\n    Student --> UC8\n```",
               font: "Consolas",
               size: 20,
             }),
@@ -609,28 +699,7 @@ const doc = new Document({
           spacing: { before: 100, after: 150 },
           children: [
             new TextRun({
-              text: "Figure 3.1: UML Use Case Diagram illustrating the functional interactions available to the student.",
-              bold: true,
-              font: "Garamond",
-              size: 20,
-            }),
-          ],
-        }),
-
-        new Paragraph({
-          children: [
-            new TextRun({
-              text: "Figure 3.2: AI Chatbot Sequence Diagram\n```mermaid\nsequenceDiagram\n    autonumber\n    actor Student\n    participant Browser as Client UI (Chatbot.jsx)\n    participant Storage as Browser LocalStorage\n    participant Route as Next.js API (/api/chat)\n    participant Gemini as Google Gemini 2.5 Flash API\n\n    Student->>Browser: Enters question e.g. 'Can I skip DBMS?'\n    Browser->>Storage: Retrieve current subject metrics\n    Storage-->>Browser: Subject records (attended, total, target)\n    Browser->>Route: POST /api/chat (message, history, attendanceSummary)\n    Note over Route: Validate input (<500 chars), rate limit IP\n    Route->>Route: Build System Prompt (Role + Context + Rules)\n    Route->>Gemini: POST generateContent (REST payload + Server API Key)\n    Gemini-->>Route: Generated AI Advice with step math\n    Route-->>Browser: JSON response { reply: string }\n    Browser-->>Student: Renders formatted message bubble\n```",
-              font: "Consolas",
-              size: 20,
-            }),
-          ],
-        }),
-        new Paragraph({
-          spacing: { before: 100, after: 150 },
-          children: [
-            new TextRun({
-              text: "Figure 3.2: UML Sequence Diagram depicting the secure token handling and context injection flow of AttendX Assistant.",
+              text: "Figure 3.2: UML Use Case Diagram illustrating the complete functional capabilities accessible to the student.",
               bold: true,
               font: "Garamond",
               size: 20,
@@ -640,19 +709,41 @@ const doc = new Document({
 
         new Paragraph({
           heading: HeadingLevel.HEADING_2,
-          children: [new TextRun({ text: "3.4 Entity-Relationship (ER) Modeling and Data Schema" })],
+          children: [new TextRun({ text: "3.3 Data Flow Diagram (DFD Level 0 & Level 1)" })],
         }),
         new Paragraph({
           children: [
             new TextRun({
-              text: "Although AttendX operates without an SQL relational database, the data layer follows a structured schema stored under distinct localStorage keys:",
+              text: "Figure 3.4: DFD Level 0 (Context Diagram)\n```mermaid\nflowchart LR\n    Student[Student User] <-->|Attendance Updates & Inquiries| AttendX(AttendX System)\n    AttendX <-->|Persistent JSON Records| Storage[(Browser LocalStorage)]\n    AttendX <-->|Context-Injected Query / AI Reply| Gemini[Google Gemini Flash API]\n```",
+              font: "Consolas",
+              size: 20,
             }),
           ],
         }),
         new Paragraph({
+          spacing: { before: 100, after: 150 },
           children: [
             new TextRun({
-              text: "1. Subject Entity: id (String, PK), name (String, Required), code (String), teacher (String), color (Hex string), attended (Integer >= 0), total (Integer >= attended), target (Integer 1-100), history (Array of AttendanceRecord).\n2. AttendanceRecord Entity: id (String, PK), date (YYYY-MM-DD), action (Enum: present | absent | cancelled), timestamp (Integer Unix ms).\n3. Settings Entity: globalTarget (Integer, default 75), theme (Enum: light | dark), notificationsEnabled (Boolean).\n4. ChatMessage Entity: id (String), role (user | assistant), content (String <= 500 chars), isError (Boolean).",
+              text: "Figure 3.4: Data Flow Diagram Level 0 illustrating system boundaries and external entity data flows.",
+              bold: true,
+              font: "Garamond",
+              size: 20,
+            }),
+          ],
+        }),
+
+        new Paragraph({
+          heading: HeadingLevel.HEADING_2,
+          children: [new TextRun({ text: "3.4 ER Diagram & 3.5 Database Design" })],
+        }),
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: "AttendX persists data within browser LocalStorage using structured JSON schemas:\n\n" +
+                    "1. Subject Entity: id (String, PK), name (String, Required), code (String), teacher (String), color (Hex), attended (Integer), total (Integer), target (Integer, 1-100), history (Array of AttendanceRecord).\n" +
+                    "2. AttendanceRecord Entity: id (String, PK), date (YYYY-MM-DD), action (Enum: present | absent | cancelled), timestamp (Integer Unix ms).\n" +
+                    "3. Settings Entity: globalTarget (Integer, default 75), theme (Enum: light | dark), notificationsEnabled (Boolean).\n" +
+                    "4. ChatMessage Entity: id (String), role (user | assistant), content (String), isError (Boolean).",
             }),
           ],
         }),
@@ -662,28 +753,43 @@ const doc = new Document({
           pageBreakBefore: true,
           alignment: AlignmentType.CENTER,
           heading: HeadingLevel.HEADING_1,
-          children: [new TextRun({ text: "CHAPTER 4\nIMPLEMENTATION AND AI INTEGRATION", bold: true })],
+          children: [new TextRun({ text: "CHAPTER 4\nIMPLEMENTATION", bold: true })],
         }),
         new Paragraph({
           heading: HeadingLevel.HEADING_2,
-          children: [new TextRun({ text: "4.1 Tools and Technologies Used" })],
+          children: [new TextRun({ text: "4.1 Tools & Technologies Used" })],
         }),
         new Paragraph({
           children: [
             new TextRun({
-              text: "The AttendX software stack was selected for maximum execution performance, rapid responsiveness, and clean pedagogical code structure:\n- Next.js 14 (App Router): Provides file-system routing, fast server rendering, and zero-configuration API endpoints.\n- React 18: Enables declarative state-driven UI updates with custom hooks.\n- Tailwind CSS: Modern utility-first responsive styling with dark-mode class toggling.\n- Recharts: High-performance SVG charts for subject bar charts and status donut distributions.\n- Lucide React: Accessible, lightweight SVG icon library.\n- Google Gemini API: Industry-leading low-latency Flash model providing academic advisory synthesis.",
+              text: "The AttendX architecture consists of:\n" +
+                    "• Next.js 14 App Router: High-performance React framework with serverless API route handlers.\n" +
+                    "• React 18: Enables declarative state management via custom hooks (useAttendanceData).\n" +
+                    "• Tailwind CSS 3.4: Modern utility-first responsive styling with dark-mode class toggling.\n" +
+                    "• Recharts 2.13: Composable SVG charting for subject bar charts and status distributions.\n" +
+                    "• Google Gemini Flash API: Low-latency AI model providing natural language academic guidance.\n" +
+                    "• Vercel: Zero-config CI/CD serverless edge hosting platform.",
             }),
           ],
         }),
 
         new Paragraph({
           heading: HeadingLevel.HEADING_2,
-          children: [new TextRun({ text: "4.4 Core Algorithms and Calculation Logic" })],
+          children: [new TextRun({ text: "4.4 Algorithms / Logic Used" })],
         }),
         new Paragraph({
           children: [
             new TextRun({
-              text: "All calculations in AttendX are centralized in lib/attendanceCalculations.js. The key formulas include:\n\n1. Attendance Percentage P:\n   P = (attended / total) * 100, where P = 0 when total = 0.\n\n2. Consecutive Required Classes x to Reach Target T%:\n   x = ceil((T * total - 100 * attended) / (100 - T)), clamped to min 0.\n   When T = 100 and attended < total, the system detects division by zero and flags 100% as mathematically impossible.\n\n3. Maximum Classes that can be Bunked b at Target T%:\n   b = floor((100 * attended / T) - total), clamped to min 0.\n\n4. Predicted Percentage after n Future Classes with k Attended:\n   P_pred = ((attended + k) / (total + n)) * 100.",
+              text: "All formulas are centralized in lib/attendanceCalculations.js:\n\n" +
+                    "1. Current Attendance Percentage P:\n" +
+                    "   P = (attended / total) * 100, where P = 0 when total = 0.\n\n" +
+                    "2. Consecutive Required Classes x to Reach Target T%:\n" +
+                    "   x = ceil((T * total - 100 * attended) / (100 - T)), minimum 0.\n" +
+                    "   If T = 100 and attended < total, (100 - T) = 0, returning 'Mathematically Impossible'.\n\n" +
+                    "3. Maximum Classes That Can Be Bunked b at Target T%:\n" +
+                    "   b = floor((100 * attended / T) - total), minimum 0.\n\n" +
+                    "4. Predicted Percentage After n Upcoming Classes with k Attended:\n" +
+                    "   P_pred = ((attended + k) / (total + n)) * 100.",
             }),
           ],
         }),
@@ -693,23 +799,11 @@ const doc = new Document({
           pageBreakBefore: true,
           alignment: AlignmentType.CENTER,
           heading: HeadingLevel.HEADING_1,
-          children: [new TextRun({ text: "CHAPTER 5\nTESTING AND RESULTS", bold: true })],
+          children: [new TextRun({ text: "CHAPTER 5\nTESTING & RESULTS", bold: true })],
         }),
         new Paragraph({
           heading: HeadingLevel.HEADING_2,
-          children: [new TextRun({ text: "5.1 Test Plan and Methodology" })],
-        }),
-        new Paragraph({
-          children: [
-            new TextRun({
-              text: "A rigorous test plan was formulated combining automated mathematical unit test assertions, manual user-interface verification, edge-case validation (such as 0 classes held, 100% target after absence, and negative numbers), and server-side rate limiting checks.",
-            }),
-          ],
-        }),
-
-        new Paragraph({
-          heading: HeadingLevel.HEADING_2,
-          children: [new TextRun({ text: "5.2 Test Cases Table" })],
+          children: [new TextRun({ text: "5.1 Test Plan & 5.2 Test Cases Table" })],
         }),
         new Paragraph({
           spacing: { before: 100, after: 100 },
@@ -778,17 +872,7 @@ const doc = new Document({
             new TableRow({
               children: [
                 new TableCell({ children: [new Paragraph({ text: "TC-05" })] }),
-                new TableCell({ children: [new Paragraph({ text: "Zero Classes Initial State" })] }),
-                new TableCell({ children: [new Paragraph({ text: "0 attended, 0 held" })] }),
-                new TableCell({ children: [new Paragraph({ text: "0.00%, no crash" })] }),
-                new TableCell({ children: [new Paragraph({ text: "0.00%, no crash" })] }),
-                new TableCell({ children: [new Paragraph({ text: "PASS" })] }),
-              ],
-            }),
-            new TableRow({
-              children: [
-                new TableCell({ children: [new Paragraph({ text: "TC-06" })] }),
-                new TableCell({ children: [new Paragraph({ text: "Undo Attendance Action" })] }),
+                new TableCell({ children: [new Paragraph({ text: "Undo Last Action" })] }),
                 new TableCell({ children: [new Paragraph({ text: "Undo last Present (+1)" })] }),
                 new TableCell({ children: [new Paragraph({ text: "Attended & Total -1" })] }),
                 new TableCell({ children: [new Paragraph({ text: "Reverted correctly" })] }),
@@ -797,7 +881,7 @@ const doc = new Document({
             }),
             new TableRow({
               children: [
-                new TableCell({ children: [new Paragraph({ text: "TC-07" })] }),
+                new TableCell({ children: [new Paragraph({ text: "TC-06" })] }),
                 new TableCell({ children: [new Paragraph({ text: "Chatbot Rate Limiting" })] }),
                 new TableCell({ children: [new Paragraph({ text: ">15 requests / min" })] }),
                 new TableCell({ children: [new Paragraph({ text: "HTTP 429 Too Many Req" })] }),
@@ -813,55 +897,44 @@ const doc = new Document({
           pageBreakBefore: true,
           alignment: AlignmentType.CENTER,
           heading: HeadingLevel.HEADING_1,
-          children: [new TextRun({ text: "CHAPTER 6\nCONCLUSION AND FUTURE SCOPE", bold: true })],
-        }),
-        new Paragraph({
-          heading: HeadingLevel.HEADING_2,
-          children: [new TextRun({ text: "6.1 Summary of Project Achievements" })],
+          children: [new TextRun({ text: "CHAPTER 6\nCONCLUSION & FUTURE WORK", bold: true })],
         }),
         new Paragraph({
           children: [
             new TextRun({
-              text: "The development of \"AttendX: Smart Attendance Planner\" successfully demonstrates that client-first architectures combined with secure serverless AI integrations can solve the perennial problem of college attendance debarment. By replacing passive retrospective statistics with exact mathematical bunk calculations, consecutive recovery targets, multi-scenario predictions, and context-aware Gemini AI advisory, AttendX empowers undergraduate students to maintain strict compliance with institutional examination ordinances.",
+              text: "Summary of Project & Achievements:\n" +
+                    "The development of AttendX: Smart Attendance Planner successfully proves that client-first architectures paired with secure serverless AI can solve the perennial problem of college attendance shortages and examination debarment. By providing real-time percentage tracking, verified bunk limits, consecutive recovery targets, and an intelligent Gemini AI assistant, AttendX empowers engineering students to maintain institutional compliance with mathematical certainty.\n\n" +
+                    "Limitations:\n" +
+                    "1. Manual Input Dependency: Requires the student to click Present, Absent, or Cancelled after lectures.\n" +
+                    "2. LocalStorage Scope: Data resides within the local browser and does not automatically sync across devices without manual JSON export/import.\n\n" +
+                    "Future Scope:\n" +
+                    "1. Automated Timetable Synchronization: Uploading semester class routines to trigger automatic attendance prompts after scheduled lectures.\n" +
+                    "2. Progressive Web App (PWA) Offline Notifications: Push alerts reminding students of early morning lectures when attendance borders the warning zone.\n" +
+                    "3. University ERP Importer: Direct OCR scanning or ERP web scraping to import historical roll records automatically.",
             }),
           ],
         }),
 
-        new Paragraph({
-          heading: HeadingLevel.HEADING_2,
-          children: [new TextRun({ text: "6.2 Limitations of the System" })],
-        }),
-        new Paragraph({
-          children: [
-            new TextRun({
-              text: "1. Device LocalStorage Scope: Because data resides in the browser, students must use the JSON Export/Import feature when moving between a desktop laptop and a personal mobile phone.\n2. Manual Logging: Daily lecture attendance is logged via manual button clicks rather than automated timetable biometric sync.",
-            }),
-          ],
-        }),
-
-        new Paragraph({
-          heading: HeadingLevel.HEADING_2,
-          children: [new TextRun({ text: "6.3 Future Scope" })],
-        }),
-        new Paragraph({
-          children: [
-            new TextRun({
-              text: "Future iterations may incorporate:\n1. Timetable Automation: Uploading semester class routines to automatically prompt attendance logging after each scheduled lecture.\n2. Progressive Web App (PWA) Offline Notifications: Push alerts reminding students of early morning lectures when attendance is bordering the warning zone.\n3. University ERP Importer: One-click scraper importing existing historical roll records directly into AttendX.",
-            }),
-          ],
-        }),
-
-        // REFERENCES (IEEE STYLE)
+        // BIBLIOGRAPHY / REFERENCES
         new Paragraph({
           pageBreakBefore: true,
           alignment: AlignmentType.CENTER,
           heading: HeadingLevel.HEADING_1,
-          children: [new TextRun({ text: "REFERENCES (IEEE STYLE)", bold: true })],
+          children: [new TextRun({ text: "BIBLIOGRAPHY / REFERENCES (IEEE STYLE)", bold: true })],
         }),
         new Paragraph({
           children: [
             new TextRun({
-              text: "[1] Next.js Documentation, \"App Router Architecture and Server Components,\" Vercel Inc., 2024. [Online]. Available: https://nextjs.org/docs\n\n[2] React Documentation, \"Custom Hooks and State Synchronization,\" Meta Platforms Inc., 2024. [Online]. Available: https://react.dev\n\n[3] Google AI for Developers, \"Gemini API Documentation and Model Capabilities,\" Google LLC, 2024. [Online]. Available: https://ai.google.dev/docs\n\n[4] W3C Web Applications Working Group, \"Web Storage (Second Edition),\" World Wide Web Consortium, Recommendation, 2021. [Online]. Available: https://www.w3.org/TR/webstorage/\n\n[5] M. Fowler, \"Refactoring: Improving the Design of Existing Code,\" 2nd ed., Boston, MA: Addison-Wesley, 2018.\n\n[6] Tailwind Labs, \"Tailwind CSS: Utility-First CSS Framework Specification,\" 2024. [Online]. Available: https://tailwindcss.com/docs\n\n[7] Recharts Community, \"Composable SVG Charting Library for React,\" 2024. [Online]. Available: https://recharts.org\n\n[8] All India Council for Technical Education (AICTE), \"Approval Process Handbook and Student Minimum Attendance Guidelines,\" New Delhi, India, 2023.\n\n[9] JECRC University, \"Academic Regulations and Examination Ordinances for Undergraduate Engineering Programs,\" Jaipur, Rajasthan, 2024.\n\n[10] Vercel Inc., \"Serverless Functions and Edge Runtime Deployment Guide,\" 2024. [Online]. Available: https://vercel.com/docs\n\n[11] GitHub Documentation, \"Git Version Control and Collaborative Workflow Guide,\" GitHub Inc., 2024. [Online]. Available: https://docs.github.com\n\n[12] I. Sommerville, \"Software Engineering,\" 10th ed., London: Pearson Education, 2016.",
+              text: "[1] Next.js Documentation, “App Router Architecture and Server Components,” Vercel Inc., 2024. [Online]. Available: https://nextjs.org/docs\n\n" +
+                    "[2] React Documentation, “Custom Hooks and State Synchronization,” Meta Platforms Inc., 2024. [Online]. Available: https://react.dev\n\n" +
+                    "[3] Google AI for Developers, “Gemini API Documentation and Model Capabilities,” Google LLC, 2024. [Online]. Available: https://ai.google.dev/docs\n\n" +
+                    "[4] W3C Web Applications Working Group, “Web Storage (Second Edition),” World Wide Web Consortium, Recommendation, 2021. [Online]. Available: https://www.w3.org/TR/webstorage/\n\n" +
+                    "[5] Tailwind Labs, “Tailwind CSS: Utility-First CSS Framework Specification,” 2024. [Online]. Available: https://tailwindcss.com/docs\n\n" +
+                    "[6] Recharts Community, “Composable SVG Charting Library for React,” 2024. [Online]. Available: https://recharts.org\n\n" +
+                    "[7] All India Council for Technical Education (AICTE), “Approval Process Handbook and Student Minimum Attendance Guidelines,” New Delhi, India, 2023.\n\n" +
+                    "[8] JECRC University, “Academic Regulations and Examination Ordinances for Undergraduate Engineering Programs,” Jaipur, Rajasthan, 2024.\n\n" +
+                    "[9] Vercel Inc., “Serverless Functions and Edge Runtime Deployment Guide,” 2024. [Online]. Available: https://vercel.com/docs\n\n" +
+                    "[10] I. Sommerville, “Software Engineering,” 10th ed., London: Pearson Education, 2016.",
             }),
           ],
         }),
@@ -876,7 +949,12 @@ const doc = new Document({
         new Paragraph({
           children: [
             new TextRun({
-              text: "1. Getting Started: Open the AttendX website. On initial launch, 5 pre-configured engineering subjects (DSA, DBMS, OS, Computer Networks, and Discrete Mathematics) are pre-loaded to demonstrate all features immediately.\n2. Tracking Attendance: Click 'Present' (+1 attended, +1 total), 'Absent' (+0 attended, +1 total), or 'Off' (Cancelled) on any subject card. Click 'Undo' to reverse the last action.\n3. Using the Bunk Calculator: Navigate to 'Bunk Calc', select your subject or enter custom values, and review the safe bunk allowance and skip impact simulation table.\n4. Using the Required Classes Calculator: Navigate to 'Required Calc' to see the exact consecutive classes needed to recover from a shortage.\n5. Consulting AttendX Assistant: Click the floating 'Ask AttendX AI' button at the bottom-right corner of any page. Ask questions like \"Can I skip tomorrow's class?\" or \"Make a plan to reach 75%\". The AI will answer using your real data!\n6. Backup & Export: Navigate to 'Settings' and click 'Export JSON Backup' to download your attendance file.",
+              text: "1. Getting Started: Open AttendX. On initial launch, 5 pre-configured engineering subjects (DSA, DBMS, OS, Computer Networks, and Discrete Mathematics) are pre-loaded.\n" +
+                    "2. Tracking Attendance: Click 'Present' (+1 attended, +1 total), 'Absent' (+0 attended, +1 total), or 'Off' (Cancelled) on any subject card. Click 'Undo' to reverse the last action.\n" +
+                    "3. Bunk Calculator: Navigate to 'Bunk Calc', select your subject or enter custom values, and review the safe bunk allowance and skip impact simulation table.\n" +
+                    "4. Required Classes Calculator: Navigate to 'Required Calc' to see the exact consecutive classes needed to recover from a shortage.\n" +
+                    "5. Consulting AttendX Assistant: Click the floating 'Ask AttendX AI' button or visit the dedicated /assistant page to ask questions evaluated against your live data.\n" +
+                    "6. Backup & Export: Navigate to 'Settings' and click 'Export JSON Backup' to download your attendance file.",
             }),
           ],
         }),
