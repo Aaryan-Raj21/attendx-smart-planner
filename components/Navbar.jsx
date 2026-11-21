@@ -11,15 +11,15 @@ import {
   Calculator,
   AlertTriangle,
   Settings as SettingsIcon,
+  Sparkles,
   Menu,
   X,
-  Target,
 } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
 /**
  * Main Application Navigation Bar
- * Responsive header with active link states, overall attendance pill, and dark mode toggle.
+ * Responsive header with active link states, overall attendance pill, AI Assistant tab, and dark mode toggle.
  */
 export default function Navbar({ overallMetrics }) {
   const pathname = usePathname();
@@ -30,7 +30,8 @@ export default function Navbar({ overallMetrics }) {
     { href: "/tracker", label: "Subject Tracker", icon: CalendarCheck },
     { href: "/predictor", label: "Predictor", icon: TrendingUp },
     { href: "/bunk-calculator", label: "Bunk Calc", icon: Calculator },
-    { href: "/required-calculator", label: "Required Calc", icon: Target },
+    { href: "/required-calculator", label: "Required Calc", icon: CalendarCheck },
+    { href: "/assistant", label: "AI Assistant", icon: Sparkles, isHighlight: true },
     { href: "/alerts", label: "Alerts", icon: AlertTriangle },
     { href: "/settings", label: "Settings", icon: SettingsIcon },
   ];
@@ -59,7 +60,7 @@ export default function Navbar({ overallMetrics }) {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav className="hidden xl:flex items-center gap-1">
           {navLinks.map((link) => {
             const Icon = link.icon;
             const isActive = pathname === link.href;
@@ -70,10 +71,12 @@ export default function Navbar({ overallMetrics }) {
                 className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition-all ${
                   isActive
                     ? "bg-indigo-50 text-indigo-700 dark:bg-indigo-950/50 dark:text-indigo-300 shadow-sm"
+                    : link.isHighlight
+                    ? "text-indigo-600 dark:text-indigo-400 font-bold hover:bg-indigo-50/50 dark:hover:bg-indigo-950/30"
                     : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100/60 dark:hover:bg-slate-800/60"
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${isActive ? "text-indigo-600 dark:text-indigo-400" : ""}`} />
+                <Icon className={`w-3.5 h-3.5 ${link.isHighlight ? "text-amber-500 animate-pulse" : isActive ? "text-indigo-600 dark:text-indigo-400" : ""}`} />
                 {link.label}
               </Link>
             );
@@ -97,7 +100,7 @@ export default function Navbar({ overallMetrics }) {
           {/* Mobile hamburger button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+            className="xl:hidden p-2 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -107,7 +110,7 @@ export default function Navbar({ overallMetrics }) {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 pt-2 pb-4 space-y-1 animate-slide-up">
+        <div className="xl:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 pt-2 pb-4 space-y-1 animate-slide-up">
           {overallMetrics && (
             <div className={`flex items-center justify-between p-3 rounded-xl border text-xs font-bold mb-2 ${overallMetrics.statusBadge}`}>
               <span>Overall Attendance</span>
@@ -125,10 +128,12 @@ export default function Navbar({ overallMetrics }) {
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
                   isActive
                     ? "bg-indigo-50 text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-300"
+                    : link.isHighlight
+                    ? "text-indigo-600 dark:text-indigo-400 font-bold bg-indigo-50/30 dark:bg-indigo-950/20"
                     : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
                 }`}
               >
-                <Icon className="w-4 h-4" />
+                <Icon className={`w-4 h-4 ${link.isHighlight ? "text-amber-500" : ""}`} />
                 {link.label}
               </Link>
             );
