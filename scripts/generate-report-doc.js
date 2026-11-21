@@ -11,14 +11,20 @@ import {
   TableRow,
   TableCell,
   WidthType,
-  BorderStyle,
   Header,
   Footer,
   PageNumber,
   NumberFormat,
+  ImageRun,
 } from "docx";
 
-console.log("Generating AttendX Major Project Report matching exact JECRC University Guidelines...");
+console.log("Generating Designer-Grade JECRC Major Project Report (.docx)...");
+
+const crestPath = path.join(process.cwd(), "assets", "jecrc_crest.png");
+let crestImageBuffer = null;
+if (fs.existsSync(crestPath)) {
+  crestImageBuffer = fs.readFileSync(crestPath);
+}
 
 const doc = new Document({
   styles: {
@@ -75,7 +81,7 @@ const doc = new Document({
   },
   sections: [
     // -------------------------------------------------------------------------
-    // FRONT MATTER SECTION (ROMAN NUMERALS i, ii, iii...)
+    // FRONT MATTER SECTION (LOWER-CASE ROMAN i, ii, iii...)
     // -------------------------------------------------------------------------
     {
       properties: {
@@ -85,10 +91,10 @@ const doc = new Document({
             formatType: NumberFormat.LOWER_ROMAN,
           },
           margin: {
-            top: 1440, // 1 inch
-            bottom: 1440,
-            left: 2160, // 1.5 inch
-            right: 1440,
+            top: 1440,    // 1 inch
+            bottom: 1440, // 1 inch
+            left: 2160,   // 1.5 inch binding margin
+            right: 1440,  // 1 inch
           },
         },
       },
@@ -106,7 +112,7 @@ const doc = new Document({
         // COVER PAGE
         new Paragraph({
           alignment: AlignmentType.CENTER,
-          spacing: { before: 200, after: 150 },
+          spacing: { before: 180, after: 100 },
           children: [
             new TextRun({
               text: "MAJOR PROJECT REPORT",
@@ -117,14 +123,14 @@ const doc = new Document({
         }),
         new Paragraph({
           alignment: AlignmentType.CENTER,
-          spacing: { before: 50, after: 200 },
+          spacing: { before: 50, after: 150 },
           children: [
             new TextRun({ text: "on", size: 24, italics: true }),
           ],
         }),
         new Paragraph({
           alignment: AlignmentType.CENTER,
-          spacing: { before: 100, after: 300 },
+          spacing: { before: 100, after: 200 },
           children: [
             new TextRun({
               text: '“AttendX: Smart Attendance Planner”',
@@ -136,7 +142,7 @@ const doc = new Document({
         }),
         new Paragraph({
           alignment: AlignmentType.CENTER,
-          spacing: { before: 100, after: 300 },
+          spacing: { before: 100, after: 250 },
           children: [
             new TextRun({
               text: "Submitted in partial fulfillment of the requirements for the award of the degree of\nBACHELOR OF TECHNOLOGY\nin\nCOMPUTER SCIENCE AND ENGINEERING",
@@ -145,22 +151,39 @@ const doc = new Document({
             }),
           ],
         }),
+
+        // University Logo Image
+        ...(crestImageBuffer
+          ? [
+              new Paragraph({
+                alignment: AlignmentType.CENTER,
+                spacing: { before: 200, after: 200 },
+                children: [
+                  new ImageRun({
+                    data: crestImageBuffer,
+                    transformation: { width: 140, height: 140 },
+                  }),
+                ],
+              }),
+            ]
+          : [
+              new Paragraph({
+                alignment: AlignmentType.CENTER,
+                spacing: { before: 200, after: 200 },
+                children: [
+                  new TextRun({
+                    text: "[ JECRC UNIVERSITY LOGO ]",
+                    bold: true,
+                    size: 24,
+                    color: "DC2626",
+                  }),
+                ],
+              }),
+            ]),
+
         new Paragraph({
           alignment: AlignmentType.CENTER,
-          spacing: { before: 250, after: 250 },
-          children: [
-            new TextRun({
-              text: "[ JECRC UNIVERSITY LOGO ]",
-              bold: true,
-              italics: true,
-              size: 24,
-              color: "DC2626",
-            }),
-          ],
-        }),
-        new Paragraph({
-          alignment: AlignmentType.CENTER,
-          spacing: { before: 200, after: 150 },
+          spacing: { before: 150, after: 120 },
           children: [
             new TextRun({ text: "Submitted By:\n", bold: true, size: 24 }),
             new TextRun({
@@ -171,7 +194,7 @@ const doc = new Document({
         }),
         new Paragraph({
           alignment: AlignmentType.CENTER,
-          spacing: { before: 150, after: 250 },
+          spacing: { before: 120, after: 200 },
           children: [
             new TextRun({ text: "Under the Supervision of:\n", bold: true, size: 24 }),
             new TextRun({
@@ -182,7 +205,7 @@ const doc = new Document({
         }),
         new Paragraph({
           alignment: AlignmentType.CENTER,
-          spacing: { before: 300, after: 100 },
+          spacing: { before: 250, after: 80 },
           children: [
             new TextRun({
               text: "DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING\nJECRC UNIVERSITY, JAIPUR\nSESSION: 2025–26",
@@ -192,7 +215,7 @@ const doc = new Document({
           ],
         }),
 
-        // DECLARATION (EXACT UNIVERSITY TEMPLATE)
+        // DECLARATION
         new Paragraph({
           pageBreakBefore: true,
           alignment: AlignmentType.CENTER,
@@ -222,7 +245,7 @@ const doc = new Document({
           ],
         }),
 
-        // CERTIFICATE (EXACT UNIVERSITY TEMPLATE)
+        // CERTIFICATE
         new Paragraph({
           pageBreakBefore: true,
           alignment: AlignmentType.CENTER,
@@ -291,7 +314,7 @@ const doc = new Document({
           ],
         }),
 
-        // ABSTRACT (EXACT 1-PARAGRAPH ITALIC SPECIFICATION)
+        // ABSTRACT
         new Paragraph({
           pageBreakBefore: true,
           alignment: AlignmentType.CENTER,
@@ -471,7 +494,7 @@ const doc = new Document({
               children: [
                 new TextRun({
                   text: "AttendX: Smart Attendance Planner | JECRC University, Jaipur",
-                  size: 18, // 9pt
+                  size: 18,
                   color: "666666",
                 }),
               ],
@@ -585,13 +608,14 @@ const doc = new Document({
           children: [new TextRun({ text: "2.2 Comparative Study" })],
         }),
         new Paragraph({
+          alignment: AlignmentType.CENTER,
           spacing: { before: 100, after: 100 },
           children: [
             new TextRun({
               text: "Table 2.1: Comparative Feature Evaluation Matrix of AttendX vs Existing Portals",
               bold: true,
               font: "Garamond",
-              size: 20,
+              size: 20, // 10pt
             }),
           ],
         }),
@@ -689,17 +713,18 @@ const doc = new Document({
         new Paragraph({
           children: [
             new TextRun({
-              text: "Figure 3.2: UML Use Case Diagram\n```mermaid\nflowchart TD\n    Student((Student))\n    UC1[Manage Subjects: Add/Edit/Delete]\n    UC2[Mark Daily Attendance: Present/Absent/Cancelled]\n    UC3[Perform Undo Last Action]\n    UC4[Calculate Bunk Capacity]\n    UC5[Calculate Recovery Classes Needed]\n    UC6[Simulate Future Attendance Scenarios]\n    UC7[Consult AI Assistant with Real Context]\n    UC8[Export / Import JSON Data]\n    \n    Student --> UC1\n    Student --> UC2\n    Student --> UC3\n    Student --> UC4\n    Student --> UC5\n    Student --> UC6\n    Student --> UC7\n    Student --> UC8\n```",
+              text: "```mermaid\nflowchart TD\n    Student((Student))\n    UC1[Manage Subjects: Add/Edit/Delete]\n    UC2[Mark Daily Attendance: Present/Absent/Cancelled]\n    UC3[Perform Undo Last Action]\n    UC4[Calculate Bunk Capacity]\n    UC5[Calculate Recovery Classes Needed]\n    UC6[Simulate Future Attendance Scenarios]\n    UC7[Consult AI Assistant with Real Context]\n    UC8[Export / Import JSON Data]\n    \n    Student --> UC1\n    Student --> UC2\n    Student --> UC3\n    Student --> UC4\n    Student --> UC5\n    Student --> UC6\n    Student --> UC7\n    Student --> UC8\n```",
               font: "Consolas",
               size: 20,
             }),
           ],
         }),
         new Paragraph({
+          alignment: AlignmentType.CENTER,
           spacing: { before: 100, after: 150 },
           children: [
             new TextRun({
-              text: "Figure 3.2: UML Use Case Diagram illustrating the complete functional capabilities accessible to the student.",
+              text: "Figure 3.2: UML Use Case Diagram illustrating student interactions with AttendX.",
               bold: true,
               font: "Garamond",
               size: 20,
@@ -714,13 +739,14 @@ const doc = new Document({
         new Paragraph({
           children: [
             new TextRun({
-              text: "Figure 3.4: DFD Level 0 (Context Diagram)\n```mermaid\nflowchart LR\n    Student[Student User] <-->|Attendance Updates & Inquiries| AttendX(AttendX System)\n    AttendX <-->|Persistent JSON Records| Storage[(Browser LocalStorage)]\n    AttendX <-->|Context-Injected Query / AI Reply| Gemini[Google Gemini Flash API]\n```",
+              text: "```mermaid\nflowchart LR\n    Student[Student User] <-->|Attendance Updates & Inquiries| AttendX(AttendX System)\n    AttendX <-->|Persistent JSON Records| Storage[(Browser LocalStorage)]\n    AttendX <-->|Context-Injected Query / AI Reply| Gemini[Google Gemini Flash API]\n```",
               font: "Consolas",
               size: 20,
             }),
           ],
         }),
         new Paragraph({
+          alignment: AlignmentType.CENTER,
           spacing: { before: 100, after: 150 },
           children: [
             new TextRun({
@@ -806,6 +832,7 @@ const doc = new Document({
           children: [new TextRun({ text: "5.1 Test Plan & 5.2 Test Cases Table" })],
         }),
         new Paragraph({
+          alignment: AlignmentType.CENTER,
           spacing: { before: 100, after: 100 },
           children: [
             new TextRun({
@@ -966,5 +993,5 @@ const doc = new Document({
 Packer.toBuffer(doc).then((buffer) => {
   const outputPath = path.join(process.cwd(), "AttendX_Major_Project_Report.docx");
   fs.writeFileSync(outputPath, buffer);
-  console.log(`Report successfully written to: ${outputPath}`);
+  console.log(`Designer-Grade Report successfully generated at: ${outputPath}`);
 });
